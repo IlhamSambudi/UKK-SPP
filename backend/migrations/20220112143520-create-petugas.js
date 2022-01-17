@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('petugas', {
-      id: {
+      id_petugas: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,

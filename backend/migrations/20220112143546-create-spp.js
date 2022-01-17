@@ -1,8 +1,8 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('spps', {
-      id: {
+    await queryInterface.createTable('spp', {
+      id_spp: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -25,6 +25,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('spps');
+    await queryInterface.dropTable('spp');
   }
 };

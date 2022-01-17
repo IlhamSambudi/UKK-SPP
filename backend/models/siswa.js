@@ -5,16 +5,37 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class siswa extends Model {
     /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    * Helper method for defining associations.
+    * This method is not a part of Sequelize lifecycle.
+    * The `models/index` file will call this method automatically.
+    */
     static associate(models) {
-      // define association here
+      this.hasMany(models.pembayaran, {
+        foreignKey: "nisn",
+        as: "siswa"
+      })
+      // relation to pembayaran (id_spp)
+      this.hasMany(models.pembayaran, {
+        foreignKey: "id_spp",
+        as: "spp_pembayaran"
+      })
+      // relation to spp
+      this.belongsTo(models.spp, {
+        foreignKey: "id_spp",
+        as: "spp"
+      })
+      // relation to kelas
+      this.belongsTo(models.kelas, {
+        foreignKey: "id_kelas",
+        as: "kelas"
+      })
     }
   };
   siswa.init({
-    nisn: DataTypes.STRING,
+    nisn: {
+      type: DataTypes.STRING,
+      primaryKey: true
+    },
     nis: DataTypes.STRING,
     nama: DataTypes.STRING,
     id_kelas: DataTypes.INTEGER,
@@ -27,6 +48,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'siswa',
+    tableName: "siswa"
   });
   return siswa;
 };

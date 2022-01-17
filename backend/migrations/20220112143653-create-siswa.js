@@ -1,15 +1,11 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('siswas', {
-      id: {
+    await queryInterface.createTable('siswa', {
+      nisn: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      nisn: {
-        type: Sequelize.STRING
       },
       nis: {
         type: Sequelize.STRING
@@ -18,7 +14,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       id_kelas: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "kelas",
+          key: "id_kelas"
+        }
+
       },
       alamat: {
         type: Sequelize.TEXT
@@ -27,7 +28,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       id_spp: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "spp",
+          key: "id_spp"
+        }
+
       },
       username: {
         type: Sequelize.STRING
@@ -49,6 +55,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('siswas');
+    await queryInterface.dropTable('siswa');
   }
-};
+};  

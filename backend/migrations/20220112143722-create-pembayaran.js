@@ -1,18 +1,27 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('pembayarans', {
-      id: {
+    await queryInterface.createTable('pembayaran', {
+      id_pembayaran: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
       id_petugas: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "petugas",
+          key: "id_petugas"
+        }
       },
       nisn: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER,
+        references: {
+          model: "siswa",
+          key: "nisn"
+        }
+
       },
       tgl_bayar: {
         type: Sequelize.DATE
@@ -21,7 +30,12 @@ module.exports = {
         type: Sequelize.STRING
       },
       id_spp: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: "siswa",
+          key: "id_spp"
+        }
+
       },
       jumlah_bayar: {
         type: Sequelize.INTEGER
@@ -37,6 +51,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('pembayarans');
+    await queryInterface.dropTable('pembayaran');
   }
 };
