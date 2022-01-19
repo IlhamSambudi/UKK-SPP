@@ -7,6 +7,10 @@ const md5 = require("md5")
 const SECRET_KEY_SISWA = "cobaen"
 const authSiswa = require("../auth-siswa")
 const jwt = require("jsonwebtoken")
+const authPetugas = require("../auth-petugas")
+const authAdmin = require("../auth-admin")
+
+
 
 const multer = require("multer")
 const path = require("path")
