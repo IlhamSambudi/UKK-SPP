@@ -24,6 +24,7 @@ app.post("/", async(req,res)=>{
         id_petugas: req.body.id_petugas,
         nisn: req.body.nisn,
         tgl_bayar: req.body.tgl_bayar,
+        id_spp:req.body.id_spp,
         bulan_tahun: req.body.bulan_tahun,
         jumlah_bayar: req.body.jumlah_bayar
     }
