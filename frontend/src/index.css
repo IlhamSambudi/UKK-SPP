@@ -1,13 +1,69 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+.root-adminHome{
+  margin-top: -7rem;
+ }
+ .bgHome{
+  width: 100%;
+  min-height: 50vh;
+  background-color: paleturquoise;
+  background-size: 100%;
+  background-position: center;
+ }
+ .cardStyleProfile{
+  box-shadow: 1px 3px 5px 0px rgba(0,0,0,0.26);
+ -webkit-box-shadow: 1px 3px 5px 0px rgba(0,0,0,0.26);
+ -moz-box-shadow: 1px 3px 5px 0px rgba(0,0,0,0.26);
+ }
+ .profileCard{
+  align-items: center;
+ }
+ .profilPicture{
+  height: 10rem;
+  width: 10rem;
+  border-radius: 100%;
+ }
+ .nameProfile{
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 0.5rem;
+ }
+ .roleProfile{
+  font-size: 1rem;
+  line-height: 1rem;
+ }
+ .homeTitle{
+  color: white;
+  text-align: center;
+  padding-top: 4rem;
+  font-size: 5rem;
+  font-weight: 700;
+ }
+ .homeDesc{
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+ }
+ .space{
+  width: 1rem;
+ }
+ .cardTransaksi{
+  background-color: #0275d8;
+  border-radius: 0.5rem;
+ }
+ .transaksiNow{
+  font-size: 2rem;
+  color: white;
+  text-align: center;
+  padding-top: 3.2rem;
+  line-height: 2.5rem;
+ }
+ .cardTransaksi:hover{
+  background-color: #292b2c;
+ }
+ /* LOGIN */
+ .bgLogin{
+  width: 100%;
+  min-height: 97.85vh;
+  background-color:burlywood;
+  background-size: 100%;
+  background-position: center;
+ }
