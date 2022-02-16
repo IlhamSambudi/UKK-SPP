@@ -70,33 +70,33 @@ const useStyles = makeStyles((theme) => ({
     // table spp
     columnId: {
         minWidth: "5vw",
-        fontSize: "20px"
+        fontSize: "16px"
     },
     columnTahun: {
         minWidth: "25vw",
-        fontSize: "20px"
+        fontSize: "16px"
     },
     columnNominal: {
         minWidth: "25vw",
-        fontSize: "20px"
+        fontSize: "16px"
     },
     columnAksi: {
         minWidth: "5vw",
-        fontSize: "20px"
+        fontSize: "16px"
     },
     // table kelas
     columnKelas: {
         minWidth: "15vw",
-        fontSize: "20px"
+        fontSize: "16px"
     },
     columnKompetensi: {
         minWidth: "25vw",
-        fontSize: "20px"
+        fontSize: "16px"
     },
     // card siswa
     bodyCardSiswa: {
         minHeight: "20vh",
-        maxHeight: "60vh",
+        maxHeight: "16vh",
         maxWidth: "95vw",
         marginTop: "2vh",
         marginBottom: "0rem"

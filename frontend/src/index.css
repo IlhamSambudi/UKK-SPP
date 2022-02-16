@@ -1,10 +1,13 @@
+body{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
 .root-adminHome{
   margin-top: -7rem;
  }
  .bgHome{
   width: 100%;
   min-height: 50vh;
-  background-color: paleturquoise;
+  background-color: blueviolet;
   background-size: 100%;
   background-position: center;
  }
@@ -22,7 +25,7 @@
   border-radius: 100%;
  }
  .nameProfile{
-  font-size: 2rem;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 0.5rem;
  }
@@ -34,13 +37,13 @@
   color: white;
   text-align: center;
   padding-top: 4rem;
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 700;
  }
  .homeDesc{
   color: white;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1rem;
  }
  .space{
   width: 1rem;
@@ -50,7 +53,7 @@
   border-radius: 0.5rem;
  }
  .transaksiNow{
-  font-size: 2rem;
+  font-size: 1rem;
   color: white;
   text-align: center;
   padding-top: 3.2rem;
