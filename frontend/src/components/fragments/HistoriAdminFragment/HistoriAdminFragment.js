@@ -56,8 +56,7 @@ export default function Histori() {
         siswa: {},
         nisn: "",
         spp: {},
-        bulan_dibayar: "",
-        tahun_dibayar: "",
+        bulan_tahun: "",
         jumlah_bayar: 0,
         message: "",
         id_pembayaran: 0,
@@ -87,8 +86,7 @@ export default function Histori() {
             "nisn": item.nisn,
             "tgl_bayar": item.tgl_bayar,
             "jumlah_bayar": item.jumlah_bayar,
-            "bulan_dibayar": item.bulan_dibayar,
-            "tahun_dibayar": item.tahun_dibayar,
+            "bulan_tahun": item.bulan_tahun,
         })
     }
     const handleModalClose = () => {
@@ -107,8 +105,7 @@ export default function Histori() {
         { label: "Kelas", theValue: values.kelas.nama_kelas },
         { label: "ID SPP", theValue: values.spp.id_spp },
         { label: "Taggal Bayar", theValue: values.tgl_bayar },
-        { label: "Bulan Dibayar", theValue: values.bulan_dibayar },
-        { label: "Tahun Dibayar", theValue: values.tahun_dibayar },
+        { label: "Bulan Tahun Dibayar", theValue: values.bulan_tahun },
         { label: "Jumlah Nominal", theValue: values.jumlah_bayar },
     ]
     if (values.role === "admin" || values.role === "petugas") {
@@ -126,7 +123,7 @@ export default function Histori() {
                                         <Table stickyHeader >
                                             <TableHead>
                                                 <TableRow>
-                                                    <TableCell key="id_histori" align="left">
+                                                    <TableCell key="id_pembayaran" align="left">
                                                         ID
                                                     </TableCell>
                                                     <TableCell key="siswa" align="left">
@@ -138,12 +135,12 @@ export default function Histori() {
                                                     <TableCell key="tanggal" align="left">
                                                         TANGGAL BAYAR
                                                     </TableCell>
-                                                    <TableCell key="bulan" align="left">
-                                                        BULAN DIBAYAR
+                                                    <TableCell key="bulan_tahun" align="left">
+                                                        BULAN TAHUN DIBAYAR
                                                     </TableCell>
-                                                    <TableCell key="tahun" align="left">
+                                                    {/* <TableCell key="tahun" align="left">
                                                         TAHUN DIBAYAR
-                                                    </TableCell>
+                                                    </TableCell> */}
                                                     <TableCell key="jumlah" align="left">
                                                         JUMLAH DIBAYAR
                                                     </TableCell>
@@ -155,7 +152,7 @@ export default function Histori() {
                                             <TableBody>
                                                 {data.map(item => (
                                                     <TableRow hover>
-                                                        <TableCell key="id_histori" align="left" className={classes.columnID}>
+                                                        <TableCell key="id_pembayaran" align="left" className={classes.columnID}>
                                                             {item.id_pembayaran}
                                                         </TableCell>
                                                         <TableCell key="siswa" align="left" className={classes.columnNama}>
@@ -167,12 +164,12 @@ export default function Histori() {
                                                         <TableCell key="tanggal" align="left" className={classes.columnTanggal}>
                                                             {item.tgl_bayar}
                                                         </TableCell>
-                                                        <TableCell key="bulan" align="left" className={classes.columnTanggal}>
-                                                            {item.bulan_dibayar}
+                                                        <TableCell key="bulan_tahun" align="left" className={classes.columnTanggal}>
+                                                            {item.bulan_tahun}
                                                         </TableCell>
-                                                        <TableCell key="tahun" align="left" className={classes.columnTanggal}>
+                                                        {/* <TableCell key="tahun" align="left" className={classes.columnTanggal}>
                                                             {item.tahun_dibayar}
-                                                        </TableCell>
+                                                        </TableCell> */}
                                                         <TableCell key="jumlah" align="left" className={classes.columnJumlah}>
                                                             Rp {item.jumlah_bayar}
                                                         </TableCell>
