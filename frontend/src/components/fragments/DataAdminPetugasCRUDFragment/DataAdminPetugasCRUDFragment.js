@@ -13,6 +13,11 @@ import EditIcon from '@material-ui/icons/Edit';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import SaveIcon from '@material-ui/icons/Save';
 import Alert from '@material-ui/lab/Alert';
+import Fab from '@mui/material/Fab';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Container from '@mui/material/Container';
 import { useStyles } from '../css'
 export default function DataAdminPetugasCRUDFragment() {
     // data from database
@@ -154,70 +159,75 @@ export default function DataAdminPetugasCRUDFragment() {
                 <div className="bgHome" >
                     <h1 className="homeTitle">Data Admin</h1>
                 </div>
-                <Grid container justify="center">
+                <Grid container className={classes.bodyContainer} justify="center">
                     {/* Body start */}
-                    <Grid container className={classes.bodyContainer} justify="center" >
-                        <Grid container lg={10} spacing={1} justify="center">
+                    <Container sx={{ py: 8 }} maxWidth="md">
+                        {/* End hero unit */}
+                        <Grid container spacing={4}>
                             {data.map(item => (
-                                <Grid item lg={3} md={6} xs={12} justify="center">
-                                    <Card elevation={3} className={classes.bodyCardAdmin}>
-                                        <Grid container direction="column" alignItems="center">
-                                            <img className={classes.bodyImgAdmin} src={admin_image_url
-                                                + "/" + item.image} />
-                                            <Typography variant="h4">{item.nama_petugas}</Typography>
-                                            <Grid container justify="center">
-                                                <MailOutlineRounde />
-                                                <Typography variant="h5">{item.username}</Typography>
-                                            </Grid>
-                                            <Grid container justify="center">
-                                                <VerifiedUserOutlinedIcon />
-                                                <Typography variant="h5">{item.level}</Typography>
-                                            </Grid>
-                                            <Grid container justify="center">
-                                                {/* Button edit */}
-                                                <div className="idParser" id={item.id_petugas}>
-                                                    <Button
-                                                        variant="contained"
-                                                        color="primary"
-                                                        className={classes.button}
-                                                        startIcon={<EditIcon />}
-                                                        onClick={() => editTriger(item)}
-                                                    >
-                                                        Edit
-                                                    </Button>
-                                                </div>
-                                                {/* Button delete */}
-                                                <Button
-                                                    variant="contained"
-                                                    color="secondary"
-                                                    onClick={() => deleteData(item)}
-                                                    className={classes.button}
-                                                    startIcon={<DeleteIcon />}
-                                                >
-                                                    Delete
-                                                </Button>
-                                            </Grid>
-                                        </Grid>
+                                <Grid item key={data} xs={12} sm={6} md={4}>
+                                    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+                                        <CardMedia
+                                            component="img"
+                                            sx={{
+                                                height: 200,
+                                                width: 200,
+                                                borderRadius: 2,
+                                                margin: 4,
+                                                objectFit: "cover",
+                                                alignContent : "center",
+                                                justify: "center"
+                                            
+                                            }}
+                                            image={admin_image_url
+                                                + "/" + item.image}
+
+                                            alt="random"
+                                           alignItems="center"
+                                        />
+                                        {/* <img className={classes.bodyImgAdmin} src={admin_image_url
+                                            + "/" + item.image} /> */}
+                                        <CardContent sx={{ flexGrow: 1 }}>
+                                            <Typography gutterBottom variant="h5" component="h2">
+                                                {item.nama_petugas}
+                                            </Typography>
+                                            <Typography>
+                                                {item.username}
+                                            </Typography>
+                                            <Typography>
+                                                {item.level}
+                                            </Typography>
+                                        </CardContent>
+                                        <CardActions>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                className={classes.button}
+                                                startIcon={<EditIcon />}
+                                                onClick={() => editTriger(item)}>Edit</Button>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                onClick={() => deleteData(item)}
+                                                className={classes.button}
+                                                startIcon={<DeleteIcon />}>Delete</Button>
+                                        </CardActions>
                                     </Card>
                                 </Grid>
                             ))}
-                            <Grid item lg={3} md={6} xs={12} justify="center">
-                                <Card className={classes.bodyCardAdmin} elevation={10}>
-                                    <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        onClick={addTriger}
-                                        className={classes.buttonAdd}
-                                        startIcon={<AddCircleIcon />}
-                                    >
-                                        Add Admin
-                                    </Button>
-                                </Card>
+                            <Grid container justify="flex-end" className={classes.footerContainer}>
+                                <Fab variant="extended" color="primary" arialabel="add" className={classes.footerButton} onClick={() => addTriger()}>
+                                    <AddCircleIcon /> Tambah Data
+                                </Fab>
                             </Grid>
+
                         </Grid>
-                    </Grid>
+                    </Container>
                     {/* Body end */}
                 </Grid>
+
+
+
                 {/* modal edit start*/}
                 <Modal
                     aria-labelledby="transition-modal-title"

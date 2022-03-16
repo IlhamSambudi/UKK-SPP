@@ -24,7 +24,7 @@ export default function Histori() {
     }, [])
     // Axios operation
     const getHistori = () => {
-        let url = base_url + "/transaksi/for-" + values.role
+        let url = "http://localhost:8000/pembayaran/spp/transaksi"
         axios.get(url, headerConfig())
             .then(res => {
                 setData(res.data)
@@ -35,7 +35,7 @@ export default function Histori() {
     }
     const deleteData = (selected) => {
         if (window.confirm("Apakah anda yakin akan menghapus data " + selected.id_pembayaran + " ?")) {
-            let url = base_url + "/transaksi/for-" + values.role + " / " + selected.id_pembayaran
+            let url = "http://localhost:8000/pembayaran/spp/transaksi/" + selected.id_pembayaran
             axios.delete(url, headerConfig())
                 .then(res => {
                     setValues({ ...values, "message": res.data.message })
@@ -102,10 +102,10 @@ export default function Histori() {
         { label: "Nama Petugas", theValue: values.petugas.nama_petugas },
         { label: "Nama Siswa", theValue: values.siswa.nama },
         { label: "NISN", theValue: values.nisn },
-        { label: "Kelas", theValue: values.kelas.nama_kelas },
-        { label: "ID SPP", theValue: values.spp.id_spp },
+        // { label: "Kelas", theValue: values.kelas.nama_kelas },
+        // { label: "ID SPP", theValue: values.spp.id_spp },
         { label: "Taggal Bayar", theValue: values.tgl_bayar },
-        { label: "Bulan Tahun Dibayar", theValue: values.bulan_tahun },
+        { label: "Bulan Tahun Bayar", theValue: values.bulan_tahun },
         { label: "Jumlah Nominal", theValue: values.jumlah_bayar },
     ]
     if (values.role === "admin" || values.role === "petugas") {
@@ -135,7 +135,7 @@ export default function Histori() {
                                                     <TableCell key="tanggal" align="left">
                                                         TANGGAL BAYAR
                                                     </TableCell>
-                                                    <TableCell key="bulan_tahun" align="left">
+                                                    <TableCell key="bulantahun" align="left">
                                                         BULAN TAHUN DIBAYAR
                                                     </TableCell>
                                                     {/* <TableCell key="tahun" align="left">
@@ -164,7 +164,7 @@ export default function Histori() {
                                                         <TableCell key="tanggal" align="left" className={classes.columnTanggal}>
                                                             {item.tgl_bayar}
                                                         </TableCell>
-                                                        <TableCell key="bulan_tahun" align="left" className={classes.columnTanggal}>
+                                                        <TableCell key="bulantahun" align="left" className={classes.columnTanggal}>
                                                             {item.bulan_tahun}
                                                         </TableCell>
                                                         {/* <TableCell key="tahun" align="left" className={classes.columnTanggal}>
@@ -228,18 +228,18 @@ export default function Histori() {
                         <div className={classes.paperHistori}>
                             {/* body card start */}
                             <Grid container justify="center" alignItems="center">
-                                <Typography variant="h4">DETAIL PEMBAYARAN SPP</Typography>
+                                <Typography variant="h5">DETAIL PEMBAYARAN SPP</Typography>
                                 <Grid container className={classes.formContainer} justify="center
 ">
                                     {/* info start */}
                                     {formModalInfo.map(item => (
                                         <Grid container justify="flex-end" alignItems="center">
                                             <Grid item xs={3}>
-                                                <Typography variant="h5">{item.label} </Typography>
+                                                <Typography variant="h8">{item.label} </Typography>
                                             </Grid>
                                             <Grid container justify="center" xs={3}>:</Grid>
                                             <Grid item xs={6}>
-                                                <Typography variant="h6">{item.theValue}</Typography>
+                                                <Typography variant="h8">{item.theValue}</Typography>
                                             </Grid>
                                         </Grid>
                                     ))}

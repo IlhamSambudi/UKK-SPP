@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Alert from '@material-ui/lab/Alert';
 import {
     Card, Grid, Typography, Button, Fab, Snackbar, Modal, Backdrop, Fade, TextField, MenuItem
@@ -241,9 +241,11 @@ export default function Crud() {
                                         </Grid>
                                         <Grid container lg={4} justify="center">
                                             <Grid item>
-                                                <Typography variant="h5"><b>{item.nama}</b></Typography>
-                                                <Typography variant="h6"><b>NISN/NIS: </b>{item.nisn}/{item.nis}</Typography>
-                                                <Typography variant="h6"><b>Kelas: </b>{item.kelas.nama_kelas}</Typography>
+                                                <Typography variant="h6"><b>{item.nama}</b></Typography>
+                                                <div className="space"></div>   
+                                                <Typography variant="h7"><b>NISN/NIS: </b>{item.nisn}/{item.nis}</Typography>
+                                                <div className="space"></div>
+                                                <Typography variant="h7"><b>Kelas: </b>{item.kelas.nama_kelas}</Typography>
                                             </Grid>
                                         </Grid>
                                         <Grid container lg={5} xs={12} justify="center" alignItems="center">
@@ -549,7 +551,7 @@ export default function Crud() {
                         <div className={classes.paperSiswa}>
                             {/* body card start */}
                             <Grid container justify="center" alignItems="center">
-                                <Typography variant="h4">DETAIL SISWA</Typography>
+                                <Typography variant="h5">DETAIL SISWA</Typography>
                                 <Grid container className={classes.formContainer} justify="center
 ">
                                     <Grid container lg={3} justify="center" alignItems="center">
@@ -561,11 +563,11 @@ export default function Crud() {
                                         {formModalInfo.map(item => (
                                             <Grid container justify="flex-end">
                                                 <Grid item lg={2}>
-                                                    <Typography variant="h5">{item.label} </Typography>
+                                                    <Typography variant="h7">{item.label} </Typography>
                                                 </Grid>
                                                 <Grid container justify="center" lg={3}>:</Grid>
                                                 <Grid item lg={6}>
-                                                    <Typography variant="h6">{item.theValue}</Typography>
+                                                    <Typography variant="h7">{item.theValue}</Typography>
                                                 </Grid>
                                             </Grid>
                                         ))}

@@ -9,13 +9,11 @@ app.use(auth)
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-app.get("/", async(req,res)=>{
-    let result = await pembayaran.findAll()
-    res.json(result)
-})
 
 app.get("/", async(req,res)=>{
-    let result = await pembayaran.findAll()
+    let result = await pembayaran.findAll({
+        include : ["siswa", "petugas"]
+    })
     res.json(result)
 })
 

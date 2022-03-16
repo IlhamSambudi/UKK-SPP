@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
     // table (histori)
     tableBody: {
         maxWidth: "95vw",
+        fontSize: "16px",
     },
     // table spp
     columnId: {
@@ -102,10 +103,13 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "0rem"
     },
     bodyImgSiswa: {
-        maxWidth: "15vh",
-        maxHeight: "15vh",
-        borderRadius: 100,
-        margin: "2vh"
+        // maxWidth: "15vh",
+        // maxHeight: "15vh",
+        height: 100,
+        width: 100,
+        borderRadius: 10,
+        margin: "2vh",
+        objectFit:"cover"
     },
     // card admin
     bodyCardAdmin: {
@@ -114,10 +118,11 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "95vw"
     },
     bodyImgAdmin: {
-        maxHeight: "20vh",
-        maxWidth: "20vh",
-        borderRadius: 100,
-        marginTop: "5vh"
+        height: "100%",
+        width: "100%",
+        borderRadius: 10,
+        margin: "2vh",
+        objectFit:"cover"
     },
     // button
     button: {
@@ -141,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     buttonAdd: {
-        minHeight: "50vh",
+        minHeight: "100%",
         minWidth: "100%",
         backgroundColor: "#0275d8",
         fontSize: "20px",
@@ -156,12 +161,13 @@ const useStyles = makeStyles((theme) => ({
     },
     paperHistori: {
         backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
+        border: '1px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
         minWidth: "30vw",
         minHeight: "40vh",
         maxWidth: "50vw",
+        
     },
     paperSpp: {
         backgroundColor: theme.palette.background.paper,

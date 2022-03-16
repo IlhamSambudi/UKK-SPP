@@ -34,6 +34,7 @@ export default function HomeAdminFragment() {
                                 </div>
                             </Card.Body>
                         </Card>
+                        
                         <div className="space"></div>
                         <Link className="col-3 cardTransaksi" to={routes.ENTRI}>
                             <p className="transaksiNow">Transaksi Sekarang</p>
