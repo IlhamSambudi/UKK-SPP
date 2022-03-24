@@ -242,7 +242,7 @@ export default function Crud() {
                                         <Grid container lg={4} justify="center">
                                             <Grid item>
                                                 <Typography variant="h6"><b>{item.nama}</b></Typography>
-                                                <div className="space"></div>   
+                                                <div className="space"></div>
                                                 <Typography variant="h7"><b>NISN/NIS: </b>{item.nisn}/{item.nis}</Typography>
                                                 <div className="space"></div>
                                                 <Typography variant="h7"><b>Kelas: </b>{item.kelas.nama_kelas}</Typography>
@@ -309,7 +309,7 @@ export default function Crud() {
                     <Fade in={modalEdit}>
                         <div className={classes.paperSiswa}>
                             <Grid container justify="center" alignItems="center">
-                                <Typography variant="h4">FORM EDIT SISWA</Typography>
+                                <Typography variant="h5">FORM EDIT SISWA</Typography>
                                 {/* body card start */}
                                 <Grid container justify="center" className={classes.formContainer
                                 }>
@@ -323,7 +323,7 @@ export default function Crud() {
                                         {formModal.map(item => (
                                             <Grid container alignItems="center">
                                                 <Grid item xs={4}>
-                                                    <Typography variant="h6"> {item.label} </Typography>
+                                                    <Typography variant="h7"> {item.label} </Typography>
                                                 </Grid>
                                                 <Grid item xs={8}>
                                                     <TextField
@@ -339,7 +339,7 @@ export default function Crud() {
                                         {/* select kelas */}
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6">Kelas</Typography>
+                                                <Typography variant="h7">Kelas</Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <TextField
@@ -360,7 +360,7 @@ export default function Crud() {
                                         {/* select spp */}
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6">SPP</Typography>
+                                                <Typography variant="h7">SPP</Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <TextField
@@ -380,7 +380,7 @@ export default function Crud() {
                                         </Grid>
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6">Image</Typography>
+                                                <Typography variant="h7">Image</Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <input
@@ -430,7 +430,7 @@ export default function Crud() {
                     <Fade in={modalAdd}>
                         <div className={classes.paperSiswa}>
                             <Grid container justify="center" alignItems="center">
-                                <Typography variant="h4">FORM TAMBAH SISWA</Typography>
+                                <Typography variant="h5">FORM TAMBAH SISWA</Typography>
                                 {/* body card start */}
                                 <Grid container justify="center" className={classes.formContainer
                                 }>
@@ -439,7 +439,7 @@ export default function Crud() {
                                     {formModal.map(item => (
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6"> {item.label} </Typography>
+                                                <Typography variant="h7"> {item.label} </Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <TextField
@@ -455,7 +455,7 @@ export default function Crud() {
                                     {/* select kelas */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Kelas</Typography>
+                                            <Typography variant="h7">Kelas</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
@@ -476,7 +476,7 @@ export default function Crud() {
                                     {/* select spp */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">SPP</Typography>
+                                            <Typography variant="h7">SPP</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
@@ -499,7 +499,7 @@ export default function Crud() {
                                     {/* upload */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Image</Typography>
+                                            <Typography variant="h7">Image</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <input

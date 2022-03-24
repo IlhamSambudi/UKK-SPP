@@ -100,10 +100,10 @@ export default function Histori() {
     const formModalInfo = [
         { label: "ID Pembayaran", theValue: values.id_pembayaran },
         { label: "Nama Petugas", theValue: values.petugas.nama_petugas },
-        { label: "Nama Siswa", theValue: values.siswa.nama },
+        { label: "Nama Siswa", theValue: values.siswa},
         { label: "NISN", theValue: values.nisn },
-        // { label: "Kelas", theValue: values.kelas.nama_kelas },
-        // { label: "ID SPP", theValue: values.spp.id_spp },
+        { label: "Kelas", theValue: values.kelas.nama_kelas },
+        { label: "ID SPP", theValue: values.spp.id_spp },
         { label: "Taggal Bayar", theValue: values.tgl_bayar },
         { label: "Bulan Tahun Bayar", theValue: values.bulan_tahun },
         { label: "Jumlah Nominal", theValue: values.jumlah_bayar },

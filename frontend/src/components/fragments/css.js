@@ -127,7 +127,8 @@ const useStyles = makeStyles((theme) => ({
     // button
     button: {
         minWidth: "110px",
-        margin: "5px"
+        margin: "5px",
+        fontSize: "16px"
     },
     buttonInfo: {
         minWidth: "110px",
@@ -223,7 +224,7 @@ const useStyles = makeStyles((theme) => ({
         },
         minWidth: "120px",
         minHeight: "2vh",
-        fontSize: "18px",
+        fontSize: "16px",
         borderRadius: "100px"
     },
     inputNone: {

@@ -5,9 +5,8 @@ import {
 // URL
 import { base_url, admin_image_url } from "../../../configs/config"
 import axios from "axios"
-// icon
-import MailOutlineRounde from '@material-ui/icons/MailOutlineRounded';
-import VerifiedUserOutlinedIcon from '@material-ui/icons/VerifiedUserOutlined';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -192,9 +191,11 @@ export default function DataAdminPetugasCRUDFragment() {
                                                 {item.nama_petugas}
                                             </Typography>
                                             <Typography>
-                                                {item.username}
+                                                <AssignmentIndIcon />
+                                                    {item.username}
                                             </Typography>
                                             <Typography>
+                                                <AdminPanelSettingsIcon/>
                                                 {item.level}
                                             </Typography>
                                         </CardContent>
@@ -217,7 +218,7 @@ export default function DataAdminPetugasCRUDFragment() {
                             ))}
                             <Grid container justify="flex-end" className={classes.footerContainer}>
                                 <Fab variant="extended" color="primary" arialabel="add" className={classes.footerButton} onClick={() => addTriger()}>
-                                    <AddCircleIcon /> Tambah Data
+                                    <AddCircleIcon /> Tambah Data Petugas
                                 </Fab>
                             </Grid>
 
@@ -241,7 +242,7 @@ export default function DataAdminPetugasCRUDFragment() {
                     <Fade in={modalEdit}>
                         <div className={classes.paperAdmin}>
                             <Grid container justify="center" alignItems="center">
-                                <Typography variant="h4">FORM ADMIN</Typography>
+                                <Typography variant="h5">FORM ADMIN</Typography>
                                 {/* body card start */}
                                 <Grid container justify="center" className={classes.formContainer
                                 }>
@@ -253,7 +254,7 @@ export default function DataAdminPetugasCRUDFragment() {
                                         {/* nama petugas */}
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6">Nama</Typography>
+                                                <Typography variant="h7">Nama</Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <TextField
@@ -268,7 +269,7 @@ export default function DataAdminPetugasCRUDFragment() {
                                         {/* username */}
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6">Username</Typography>
+                                                <Typography variant="h7">Username</Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <TextField
@@ -283,7 +284,7 @@ export default function DataAdminPetugasCRUDFragment() {
                                         {/* pasword */}
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6">Password</Typography>
+                                                <Typography variant="h7">Password</Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <TextField
@@ -298,7 +299,7 @@ export default function DataAdminPetugasCRUDFragment() {
                                         {/* level */}
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6">Role</Typography>
+                                                <Typography variant="h7">Role</Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <TextField
@@ -349,14 +350,14 @@ export default function DataAdminPetugasCRUDFragment() {
                     <Fade in={modalAdd}>
                         <div className={classes.paperAdmin}>
                             <Grid container justify="center" alignItems="center">
-                                <Typography variant="h4">FORM TAMBAH ADMIN</Typography>
+                                <Typography variant="h5">FORM TAMBAH ADMIN</Typography>
                                 {/* body card start */}
                                 <Grid container justify="center" className={classes.formContainer
                                 }>
                                     {/* nama petugas */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Nama</Typography>
+                                            <Typography variant="h7">Nama</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
@@ -371,7 +372,7 @@ export default function DataAdminPetugasCRUDFragment() {
                                     {/* username */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Username</Typography>
+                                            <Typography variant="h7">Username</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
@@ -386,7 +387,7 @@ export default function DataAdminPetugasCRUDFragment() {
                                     {/* pasword */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Password</Typography>
+                                            <Typography variant="h7">Password</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
@@ -401,7 +402,7 @@ export default function DataAdminPetugasCRUDFragment() {
                                     {/* level */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Role</Typography>
+                                            <Typography variant="h7">Role</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
@@ -422,7 +423,7 @@ export default function DataAdminPetugasCRUDFragment() {
                                     {/* upload */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Image</Typography>
+                                            <Typography variant="h7">Image</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <input

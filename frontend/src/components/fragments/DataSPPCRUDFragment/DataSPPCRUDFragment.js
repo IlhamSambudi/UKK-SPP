@@ -235,7 +235,7 @@ export default function Crud() {
                     <Fade in={modalEdit}>
                         <div className={classes.paperSpp}>
                             <Grid container justify="center" alignItems="center">
-                                <Typography variant="h4">FORM SPP</Typography>
+                                <Typography variant="h5">FORM SPP</Typography>
                                 {/* body card start */}
                                 <Grid container justify="center" className={classes.formContainer
                                 }>
@@ -244,7 +244,7 @@ export default function Crud() {
                                     {formModal.map(item => (
                                         <Grid container alignItems="center">
                                             <Grid item xs={4}>
-                                                <Typography variant="h6"> {item.label} </Typography>
+                                                <Typography variant="h7"> {item.label} </Typography>
                                             </Grid>
                                             <Grid item xs={8}>
                                                 <TextField

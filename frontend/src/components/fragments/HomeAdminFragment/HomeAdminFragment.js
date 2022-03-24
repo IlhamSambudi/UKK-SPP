@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import axios from 'axios';
 // URL
@@ -12,6 +12,7 @@ export default function HomeAdminFragment() {
         role: (localStorage.getItem("role")),
         name: user.nama_petugas
     });
+
     if (values.role === "admin") {
         return (
             <>
@@ -34,13 +35,15 @@ export default function HomeAdminFragment() {
                                 </div>
                             </Card.Body>
                         </Card>
-                        
+
                         <div className="space"></div>
                         <Link className="col-3 cardTransaksi" to={routes.ENTRI}>
                             <p className="transaksiNow">Transaksi Sekarang</p>
                         </Link>
                     </div>
                 </div>
+
+
             </>
         )
     } else {

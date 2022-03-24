@@ -40,7 +40,7 @@ export default class NavbarElement extends React.Component {
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav className="me-auto">
-                                <Nav.Link href={routes.HOME_SISWA}>Home</Nav.Link>
+                                <Nav.Link href={routes.HOME_SISWA}>Beranda</Nav.Link>
                                 <Nav.Link href={routes.HISTORI_SISWA}>Histori</Nav.Link>
                                 <Nav.Link onClick={() => this.Logout()}>Logout</Nav.Link>
                             </Nav>
@@ -52,12 +52,11 @@ export default class NavbarElement extends React.Component {
             return (
                 <Navbar bg="light" variant="light">
                     <Container>
-                        <Navbar.Brand href={routes.HOME_PETUGAS}>Petugas Moklet</Navbar.Brand
-                        >
+                        <Navbar.Brand href={routes.HOME_PETUGAS}>Petugas</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav className="me-auto">
-                                <Nav.Link href={routes.HOME_PETUGAS}>Home</Nav.Link>
+                                <Nav.Link href={routes.HOME_PETUGAS}>Beranda</Nav.Link>
                                 <Nav.Link href={routes.ENTRI}>Entri</Nav.Link>
                                 <Nav.Link href={routes.HISTORI_ADMIN}>Histori</Nav.Link>
                                 <Nav.Link onClick={() => this.Logout()}>Logout</Nav.Link>
@@ -70,11 +69,11 @@ export default class NavbarElement extends React.Component {
             return (
                 <Navbar bg="light" variant="light" expand="lg">
                     <Container>
-                        <Navbar.Brand href={routes.HOME_ADMIN}>Admin Moklet</Navbar.Brand>
+                        <Navbar.Brand href={routes.HOME_ADMIN}>Administrator</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav className="me-auto">
-                                <Nav.Link href={routes.HOME_ADMIN}>Home</Nav.Link>
+                                <Nav.Link href={routes.HOME_ADMIN}>Beranda</Nav.Link>
                                 <Nav.Link href={routes.ENTRI}>Entri</Nav.Link>
                                 <Nav.Link href={routes.HISTORI_ADMIN}>Histori</Nav.Link>
                                 <Nav.Link href={routes.DATA_SISWA}>Data Siswa</Nav.Link>

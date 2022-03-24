@@ -4,37 +4,47 @@ import { Card, Grid, Typography, Button, TextField, MenuItem, Snackbar } from "@
 import { base_url } from '../../../configs/config';
 import axios from 'axios';
 import Alert from '@material-ui/lab/Alert'
+
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DatePicker from '@mui/lab/DatePicker';
+import Stack from '@mui/material/Stack';
+
 // icon
 import SaveIcon from '@material-ui/icons/Save';
 export default function EntriFragment() {
     // data from database
     const [siswa, setSiswa] = useState()
     // axios function
-    const getSiswa = (prop) => (event) => {
-        let url = base_url + "/siswa/for-" + values.role + " / " + prop + " / " + event.target.value
-        axios.get(url, headerConfig())
-            .then(res => {
-                setSiswa(res.data)
-                setValues({ ...values, "nisn": res.data.nisn })
-                setValues({ ...values, "nama_siswa": res.data.nama })
-                setValues({ ...values, "id_spp": res.data.id_spp })
-                setValues({ ...values, "jumlah_bayar": res.data.spp.nominal })
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    }
+    // const getSiswa = (prop) => (event) => {
+    //     let url = base_url + "/siswa/" + prop + " / " + event.target.value
+    //     axios.get(url, headerConfig())
+    //         .then(res => {
+    //             setSiswa(res.data)
+    //             setValues({ ...values, "nisn": res.data.nisn })
+    //             setValues({ ...values, "nama_siswa": res.data.nama })
+    //             setValues({ ...values, "id_spp": res.data.id_spp })
+    //             setValues({ ...values, "jumlah_bayar": res.data.spp.nominal })
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // }
+    // useEffect(() => {
+    //     getSiswa()
+    // }, [])
     const postPembayaran = (event) => {
         event.preventDefault()
         let loadData = {
             id_petugas: values.id_petugas,
-            nisn: siswa.nisn,
+            nisn: values.nisn,
             tgl_bayar: new Date().toISOString().split('T')[0],
-            bulan_tahun: values.bulan_tahun,
-            id_spp: siswa.id_spp,
+            bulan: values.bulan,
+            tahun: values.tahun,
+            id_spp: values.id_spp,
             jumlah_bayar: values.jumlah_bayar
         }
-        let url = base_url + "/transaksi/for-" + values.role
+        let url = "http://localhost:8000/pembayaran/spp/transaksi/"
         axios.post(url, loadData, headerConfig())
             .then(res => {
                 setSnackAlert(true)
@@ -76,6 +86,7 @@ export default function EntriFragment() {
         }
     })
     const classes = useStyles()
+
     // data from local storage and user input
     let user = JSON.parse(localStorage.getItem("user"))
     const [values, setValues] = React.useState({
@@ -86,14 +97,28 @@ export default function EntriFragment() {
         nama_siswa: null,
         nisn: null,
         id_spp: null,
-        bulan_tahun: "Januari 2022",
-        jumlah_bayar: 0,
+        bulan : null,
+        tahun: null,
+        jumlah_bayar: null,
+        date: "",
         message: ""
     });
+
+    // const [date, setDate] = React.useState()
+
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
         console.log(values)
     };
+
+    // const handleDate = (event) => {
+    //     // setDate(event.target.value)
+    //     // event.preventDefault()
+    //     console.log(event.target.value)
+    // }
+
+
+
     // header config for database access
     const headerConfig = () => {
         let header = {
@@ -104,7 +129,8 @@ export default function EntriFragment() {
     // bulan and tahun picker
     const bulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli",
         "Agustus", "September", "Oktober", "November", "Desember"]
-    const tahun = ["2019", "2020", "2021", "2022"]
+    const tahun = ["2019", "2020", "2021", "2022", "2023"]
+
     // snackbar handling
     const [snackAlert, setSnackAlert] = useState(false)
     const handleClose = (event, reason) => {
@@ -115,6 +141,7 @@ export default function EntriFragment() {
     };
     if (values.role === "admin" || values.role === "petugas") {
         return (
+
             <>
                 <div className="bgHome" >
                     <h1 className="homeTitle">Pembayaran SPP</h1>
@@ -128,10 +155,10 @@ export default function EntriFragment() {
                                     {/* Petugas */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Petugas</Typography>
+                                            <Typography variant="h7">Petugas</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
-                                            <TextField disabled
+                                            <TextField aria-disabled
                                                 variant="outlined"
                                                 size="small"
                                                 value={values.nama_petugas}
@@ -141,38 +168,38 @@ export default function EntriFragment() {
                                     {/* NISN */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">NISN</Typography>
+                                            <Typography variant="h7">NISN</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
                                                 variant="outlined"
                                                 size="small"
                                                 value={values.nisn}
-                                                onChange={getSiswa("nisn")}
+                                                onChange={handleChange("nisn")}
                                                 className={classes.inputField} />
                                         </Grid>
                                     </Grid>
                                     {/* NAMA SISWA */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Nama Siswa</Typography>
+                                            <Typography variant="h7">Nama Siswa</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
                                                 variant="outlined"
                                                 size="small"
                                                 value={values.nama_siswa}
-                                                onChange={getSiswa("nama")}
+                                                onChange={handleChange("nama")}
                                                 className={classes.inputField} />
                                         </Grid>
                                     </Grid>
                                     {/* Tanggal Bayar */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Tanggal Bayar</Typography>
+                                            <Typography variant="h7">Tanggal Bayar</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
-                                            <TextField disabled
+                                            <TextField aria-disabled
                                                 variant="outlined"
                                                 size="small"
                                                 value={new Date().toISOString().split('T')[0]}
@@ -182,46 +209,77 @@ export default function EntriFragment() {
                                     {/* Bulan DIbayar */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Bulan Tahun Dibayar</Typography>
+                                            <Typography variant="h7">Bulan Dibayar</Typography>
+                                        </Grid>
+                                        <Grid item xs={8}>
+                                            {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                                <DatePicker
+                                                    views={['year', 'month']}
+                                                    minDate={new Date('2019-03-01')}
+                                                    maxDate={new Date('2026-06-01')}
+                                                    value={date}
+                                                    // onChange= {(ev)=>{setValues({...values, ["date"]:ev.target.value})}}
+                                                    onChange={(ev)=>handleDate(ev)}
+
+                                                    renderInput={(params) => <TextField {...params}
+                                                        variant="outlined"
+                                                        className={classes.inputField}
+                                                    />}
+                                                />
+                                            </LocalizationProvider> */}
+                                            <TextField select
+                                                variant="outlined"
+                                                size="small"
+                                                value={values.bulan_tahun}
+                                                onChange={handleChange("bulan")}
+                                                className={classes.inputField}>
+                                                {bulan.map(item => (<MenuItem key={item} value={item}> {item}
+                                                </MenuItem>))}
+                                            </TextField>
+                                        </Grid>
+                                    </Grid>
+
+                                    <Grid container alignItems="center">
+                                        <Grid item xs={4}>
+                                            <Typography variant="h7">Tahun Dibayar</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField select
                                                 variant="outlined"
                                                 size="small"
                                                 value={values.bulan_tahun}
-                                                onChange={handleChange("bulan_dibayar")}
+                                                onChange={handleChange("tahun")}
                                                 className={classes.inputField}>
-                                                {bulan.map(item => (
-                                                    <MenuItem key={item} value={item}>
-                                                        {item}
-                                                    </MenuItem>
-                                                ))}
+                                                {tahun.map(item => (<MenuItem key={item} value={item}> {item}
+                                                </MenuItem>))}
                                             </TextField>
                                         </Grid>
                                     </Grid>
-                                    
+
                                     {/* ID SPP */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">ID SPP</Typography>
+                                            <Typography variant="h7">ID SPP</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
-                                            <TextField disabled
+                                            <TextField
                                                 variant="outlined"
                                                 size="small"
                                                 value={values.id_spp}
+                                                onChange={handleChange("id_spp")}
                                                 className={classes.inputField} />
                                         </Grid>
                                     </Grid>
                                     {/* Jumlah Bayar */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>
-                                            <Typography variant="h6">Jumlah Bayar</Typography>
+                                            <Typography variant="h7">Jumlah Bayar</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
-                                            <TextField disabled
+                                            <TextField
                                                 variant="outlined"
                                                 value={values.jumlah_bayar}
+                                                onChange={handleChange("jumlah_bayar")}
                                                 className={classes.inputField} />
                                         </Grid>
                                     </Grid>

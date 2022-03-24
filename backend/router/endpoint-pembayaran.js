@@ -23,7 +23,7 @@ app.post("/", async(req,res)=>{
         nisn: req.body.nisn,
         tgl_bayar: req.body.tgl_bayar,
         id_spp:req.body.id_spp,
-        bulan_tahun: req.body.bulan_tahun,
+        bulan_tahun: req.body.bulan + " " + req.body.tahun,
         jumlah_bayar: req.body.jumlah_bayar
     }
 
@@ -42,7 +42,7 @@ app.put("/", async(req,res)=>{
         id_petugas: req.body.id_petugas,
         nisn: req.body.nisn,
         tgl_bayar: req.body.tgl_bayar,
-        bulan_tahun: req.body.bulan_tahun,
+        bulan_tahun: req.body.bulan + " " + req.body.tahun,
         id_spp: req.body.id_spp,
         jumlah_bayar: req.body.jumlah_bayar
     }
