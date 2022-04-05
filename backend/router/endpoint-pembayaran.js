@@ -3,8 +3,8 @@ const models = require("../models/index")
 const pembayaran = models.pembayaran
 const app = express()
 
-const auth = require("../auth-admin")
-app.use(auth)
+// const auth = require("../auth-admin")
+// app.use(auth)
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))

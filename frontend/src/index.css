@@ -7,7 +7,7 @@ body{
  .bgHome{
   width: 100%;
   min-height: 50vh;
-  background-color: #d50000;
+  background-color: #CE1212;
   /* background-image: linear-gradient(to right #FF2626, #BD1616); */
   background-size: 100%;
   background-position: center;
@@ -51,7 +51,7 @@ body{
   width: 1rem;
  }
  .cardTransaksi{
-  background-color: #ff5722;
+  background-color: #113CFC;
   border-radius: 0.5rem;
  }
  .transaksiNow{
@@ -62,5 +62,5 @@ body{
   line-height: 2rem;
  }
  .cardTransaksi:hover{
-  background-color: #b23c17;
+  background-color: #193498
  }

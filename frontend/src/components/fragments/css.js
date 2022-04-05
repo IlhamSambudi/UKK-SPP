@@ -128,11 +128,12 @@ const useStyles = makeStyles((theme) => ({
     button: {
         minWidth: "110px",
         margin: "5px",
-        fontSize: "16px"
+        fontSize: "12px"
     },
     buttonInfo: {
         minWidth: "110px",
         margin: "5px",
+        fontSize: "12px",
         backgroundColor: "#ffc107"
     },
     footerContainer: {
@@ -150,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
         minHeight: "100%",
         minWidth: "100%",
         backgroundColor: "#0275d8",
-        fontSize: "20px",
+        fontSize: "12px",
         '&:hover': {
             backgroundColor: "#292b2c",
         },

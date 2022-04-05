@@ -81,8 +81,8 @@ export default function Histori() {
             "id_pembayaran": item.id_pembayaran,
             "petugas": item.petugas,
             "siswa": item.siswa,
-            "kelas": item.siswa.kelas,
-            "spp": item.siswa.spp,
+            // "kelas": item.siswa.kelas,
+            // "spp": item.siswa.spp,
             "nisn": item.nisn,
             "tgl_bayar": item.tgl_bayar,
             "jumlah_bayar": item.jumlah_bayar,
@@ -102,8 +102,8 @@ export default function Histori() {
         { label: "Nama Petugas", theValue: values.petugas.nama_petugas },
         { label: "Nama Siswa", theValue: values.siswa},
         { label: "NISN", theValue: values.nisn },
-        { label: "Kelas", theValue: values.kelas.nama_kelas },
-        { label: "ID SPP", theValue: values.spp.id_spp },
+        // { label: "Kelas", theValue: values.kelas.nama_kelas },
+        // { label: "ID SPP", theValue: values.spp.id_spp },
         { label: "Taggal Bayar", theValue: values.tgl_bayar },
         { label: "Bulan Tahun Bayar", theValue: values.bulan_tahun },
         { label: "Jumlah Nominal", theValue: values.jumlah_bayar },
@@ -229,8 +229,7 @@ export default function Histori() {
                             {/* body card start */}
                             <Grid container justify="center" alignItems="center">
                                 <Typography variant="h5">DETAIL PEMBAYARAN SPP</Typography>
-                                <Grid container className={classes.formContainer} justify="center
-">
+                                <Grid container className={classes.formContainer} justify="center">
                                     {/* info start */}
                                     {formModalInfo.map(item => (
                                         <Grid container justify="flex-end" alignItems="center">

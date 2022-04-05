@@ -52,14 +52,13 @@ export default function EntriFragment() {
             })
             .catch(err => {
                 console.log(err)
-            })
-    }
+            })    }
     // style
     const useStyles = makeStyles({
         mainContainer: {
             minWidth: "100vw",
             minHeight: "94vh",
-            marginTop: "-15rem"
+            marginTop: "-10rem"
         },
         cardContainer: {
             minWidth: "50vw",
@@ -180,19 +179,20 @@ export default function EntriFragment() {
                                         </Grid>
                                     </Grid>
                                     {/* NAMA SISWA */}
-                                    <Grid container alignItems="center">
+                                    {/* <Grid container alignItems="center">
                                         <Grid item xs={4}>
                                             <Typography variant="h7">Nama Siswa</Typography>
                                         </Grid>
                                         <Grid item xs={8}>
                                             <TextField
+                                                required
                                                 variant="outlined"
                                                 size="small"
                                                 value={values.nama_siswa}
                                                 onChange={handleChange("nama")}
                                                 className={classes.inputField} />
                                         </Grid>
-                                    </Grid>
+                                    </Grid> */}
                                     {/* Tanggal Bayar */}
                                     <Grid container alignItems="center">
                                         <Grid item xs={4}>

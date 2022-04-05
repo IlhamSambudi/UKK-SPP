@@ -20,7 +20,7 @@ export default function Histori() {
     }, [])
     // Axios operation
     const getHistori = () => {
-        let url = base_url + "/transaksi/for-siswa/" + user.nisn
+        let url = base_url + "/transaksi"
         axios.get(url, headerConfig())
             .then(res => {
                 setData(res.data)
@@ -40,8 +40,7 @@ export default function Histori() {
         siswa: {},
         nisn: "",
         spp: {},
-        bulan_dibayar: "",
-        tahun_dibayar: "",
+        bulan_tahun: "",
         jumlah_bayar: 0,
         id_pembayaran: 0,
         tgl_bayar: "",
@@ -66,8 +65,7 @@ export default function Histori() {
             "nisn": item.nisn,
             "tgl_bayar": item.tgl_bayar,
             "jumlah_bayar": item.jumlah_bayar,
-            "bulan_dibayar": item.bulan_dibayar,
-            "tahun_dibayar": item.tahun_dibayar,
+            "bulan_tahun": item.bulan_tahun,
         })
     }
     const handleModalClose = () => {
@@ -81,8 +79,7 @@ export default function Histori() {
         { label: "Kelas", theValue: values.kelas.nama_kelas },
         { label: "ID SPP", theValue: values.spp.id_spp },
         { label: "Taggal Bayar", theValue: values.tgl_bayar },
-        { label: "Bulan Dibayar", theValue: values.bulan_dibayar },
-        { label: "Tahun Dibayar", theValue: values.tahun_dibayar },
+        { label: "Bulan Tahun Bayar", theValue: values.bulan_tahun },
         { label: "Jumlah Nominal", theValue: values.jumlah_bayar },
     ]
     if (values.role === "siswa") {

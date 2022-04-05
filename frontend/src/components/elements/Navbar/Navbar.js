@@ -34,7 +34,7 @@ export default class NavbarElement extends React.Component {
         let role = prop.toLowerCase()
         if (role === "siswa") {
             return (
-                <Navbar bg="light" variant="light">
+                <Navbar bg="dark" variant="dark">
                     <Container>
                         <Navbar.Brand href={routes.HOME_SISWA}>Siswa Moklet</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -50,7 +50,7 @@ export default class NavbarElement extends React.Component {
             )
         } else if (role === "petugas") {
             return (
-                <Navbar bg="light" variant="light">
+                <Navbar bg="dark" variant="dark">
                     <Container>
                         <Navbar.Brand href={routes.HOME_PETUGAS}>Petugas</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -67,7 +67,7 @@ export default class NavbarElement extends React.Component {
             )
         } else if (role === "admin") {
             return (
-                <Navbar bg="light" variant="light" expand="lg">
+                <Navbar bg="dark" variant="dark" expand="lg">
                     <Container>
                         <Navbar.Brand href={routes.HOME_ADMIN}>Administrator</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
