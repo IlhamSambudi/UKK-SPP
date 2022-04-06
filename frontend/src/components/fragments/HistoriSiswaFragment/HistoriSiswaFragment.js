@@ -1,26 +1,38 @@
+
 import React, { useState, useEffect } from 'react'
 import {
-    Card, Grid, Paper, Table, TableCell, TableContainer,
-    TableHead, TableRow, TableBody, Typography, Button, Fab, Snackbar,
-    Modal, Backdrop, Fade,
-} from
-    "@material-ui/core"
+    Grid, Paper, Table, TableCell, TableContainer,
+    TableHead, TableRow, TableBody, Typography, Modal, Backdrop, Fade, Button
+} from "@material-ui/core"
+import { IconButton } from '@mui/material';
+import TablePagination from '@mui/material/TablePagination';
+import DownloadIcon from '@mui/icons-material/Download';
+import InfoIcon from '@material-ui/icons/Info';
+
+import { useStyles } from '../css'
+
 // URL
 import { base_url } from "../../../configs/config"
 import axios from "axios"
+import Pdf from "react-to-pdf";
+const ref = React.createRef();
+
 // ICON
-import InfoIcon from '@material-ui/icons/Info';
-import { useStyles } from '../css'
+
 export default function Histori() {
+
     // data from database
-    const [data, setData] = useState([]) //histori
+    const [data, setData] = useState([])
+
+
     // axios function
     useEffect(() => {
         getHistori()
     }, [])
+
     // Axios operation
     const getHistori = () => {
-        let url = base_url + "/transaksi"
+        let url = base_url + "/transaksi/for-siswa/" + user.nisn
         axios.get(url, headerConfig())
             .then(res => {
                 setData(res.data)
@@ -29,8 +41,12 @@ export default function Histori() {
                 console.log(err)
             })
     }
+
+
     // style
     const classes = useStyles()
+
+
     // data from local-storage
     let user = JSON.parse(localStorage.getItem("user"))
     const [values, setValues] = React.useState({
@@ -41,17 +57,22 @@ export default function Histori() {
         nisn: "",
         spp: {},
         bulan_tahun: "",
+
         jumlah_bayar: 0,
         id_pembayaran: 0,
         tgl_bayar: "",
-        kelas: ""
+        kelas: "",
+        message: "",
     });
+
+
     const headerConfig = () => {
         let header = {
             headers: { Authorization: `Bearer ${values.token}` }
         }
         return header
     }
+
     const [modalInfo, setModalInfo] = useState(false)
     const infoTriger = (item) => {
         setModalInfo(true)
@@ -67,10 +88,14 @@ export default function Histori() {
             "jumlah_bayar": item.jumlah_bayar,
             "bulan_tahun": item.bulan_tahun,
         })
+
     }
+
     const handleModalClose = () => {
         setModalInfo(false)
     }
+
+
     const formModalInfo = [
         { label: "ID Pembayaran", theValue: values.id_pembayaran },
         { label: "Nama Petugas", theValue: values.petugas.nama_petugas },
@@ -78,85 +103,104 @@ export default function Histori() {
         { label: "NISN", theValue: values.nisn },
         { label: "Kelas", theValue: values.kelas.nama_kelas },
         { label: "ID SPP", theValue: values.spp.id_spp },
-        { label: "Taggal Bayar", theValue: values.tgl_bayar },
-        { label: "Bulan Tahun Bayar", theValue: values.bulan_tahun },
+        { label: "Taggal Bayar", theValue: values.tgl_bayar.split('T')[0] },
+        { label: "Bulan Tahun", theValue: values.bulan_tahun },
         { label: "Jumlah Nominal", theValue: values.jumlah_bayar },
     ]
+
+    const columns = [
+        { id: 'id', label: 'Id', align: 'center' },
+        { id: 'nama_siswa', label: 'Nama Siswa', align: 'left' },
+        { id: 'nama_petugas', label: 'Nama Petugas', align: 'left' },
+        { id: 'tgl_bayar', label: 'Tanggal Bayar', align: 'left' },
+        { id: 'bulan_tahun', label: 'Bulan Tahun', align: 'left' },
+        { id: 'jumlah', label: 'Jumlah Bayar', align: 'left' },
+        { id: 'aksi', label: 'Aksi', align: 'left' },
+    ];
+
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(+event.target.value);
+        setPage(0);
+    };
+
     if (values.role === "siswa") {
         return (
             <>
-                <div className="bgHome" >
-                    <h1 className="homeTitle">Histori Pembayaran</h1>
-                </div>
-                <Grid container>
-                    <Grid container className={classes.bodyContainer} justify="center">
-                        <Grid container justify="center">
-                            <Grid item lg={10}>
-                                <Paper elevation={10}>
-                                    <TableContainer className={classes.tableBody}>
-                                        <Table stickyHeader >
-                                            <TableHead>
-                                                <TableRow>
-                                                    <TableCell key="id_pembayaran" align="left">
-                                                        ID
-                                                    </TableCell>
-                                                    <TableCell key="siswa" align="left">
-                                                        NAMA SISWA
-                                                    </TableCell>
-                                                    <TableCell key="petugas" align="left">
-                                                        NAMA PETUGAS
-                                                    </TableCell>
-                                                    <TableCell key="tanggal" align="left">
-                                                        TANGGAL BAYAR
-                                                    </TableCell>
-                                                    <TableCell key="bulantahun" align="left">
-                                                        BULAN TAHUN DIBAYAR
-                                                    </TableCell>
-                                                    {/* <TableCell key="tahun" align="left">
-                                                        TAHUN DIBAYAR
-                                                    </TableCell> */}
-                                                    <TableCell key="jumlah" align="left">
-                                                        JUMLAH DIBAYAR
-                                                    </TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody>
-                                                {data.map(item => (
-                                                    <TableRow hover>
-                                                        <TableCell key="id_pembayaran" align="left" className={classes.columnID}>
-                                                            {item.id_pembayaran}
-                                                        </TableCell>
-                                                        <TableCell key="siswa" align="left" className={classes.columnNama}>
-                                                            {item.siswa.nama}
-                                                        </TableCell>
-                                                        <TableCell key="petugas" align="left" className={classes.columnNama}>
-                                                            {item.petugas.nama_petugas}
-                                                        </TableCell>
-                                                        <TableCell key="tanggal" align="left" className={classes.columnTanggal}>
-                                                            {item.tgl_bayar}
-                                                        </TableCell>
-                                                        <TableCell key="bulantahun" align="left" className={classes.columnTanggal}>
-                                                            {item.bulan_tahun}
-                                                        </TableCell>
-                                                        {/* <TableCell key="tahun" align="left" className={classes.columnTanggal}>
-                                                            {item.tahun_dibayar}
-                                                        </TableCell> */}
-                                                        <TableCell key="jumlah" align="left" className={classes.columnJumlah}>
-                                                            Rp {item.jumlah_bayar}
-                                                        </TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </Paper >
-                            </Grid >
-                        </Grid >
-                    </Grid >
-                    {/* Body end */}
-                </Grid >
-                {/* modal info start*/}
-                < Modal
+                <h2 className="titlePage"></h2>
+                <Paper sx={{ width: '95%', overflow: 'hidden' }} style={{ marginLeft: '2rem', marginRight: '2rem' }}>
+                    <TableContainer sx={{ maxHeight: 500 }}>
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    {columns.map((column) => (
+                                        <TableCell
+                                            key={column.id}
+                                            align={column.align}
+                                            style={{ fontWeight: '600', color: '#fff', backgroundColor: '#CE1212', lineHeight: '16px' }}
+                                        >
+                                            {column.label}
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {data
+                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    .map(item => (
+                                        <TableRow hover>
+                                            <TableCell key="id" align="left" style={{ fontWeight: '500' }}>
+                                                {item.id_pembayaran}
+                                            </TableCell>
+                                            <TableCell key="nama_siswa" align="left" style={{ fontWeight: '500' }}>
+                                                {item.siswa.nama}
+                                            </TableCell>
+                                            <TableCell key="nama_petugas" align="left" style={{ fontWeight: '500' }}>
+                                                {item.petugas.nama_petugas}
+                                            </TableCell>
+                                            <TableCell key="tgl_bayar" align="left" style={{ fontWeight: '500' }}>
+                                                {item.tgl_bayar.split('T')[0]}
+                                            </TableCell>
+                                            <TableCell key="bulan_tahun" align="left" style={{ fontWeight: '500' }}>
+                                                {item.bulan_tahun}
+                                            </TableCell>
+                                            {/* <TableCell key="thn_dibayar" align="left" style={{ fontWeight: '500', fontFamily: 'Poppins', textAlign: 'center' }}>
+                        {item.tahun_dibayar}
+                      </TableCell> */}
+                                            <TableCell key="jumlah" align="left" style={{ fontWeight: '500' }}>
+                                                Rp {item.jumlah_bayar}
+                                            </TableCell>
+                                            <TableCell key="aksi" align="left" style={{ fontWeight: '500' }}>
+                                                {/* button info */}
+                                                <IconButton color="info" onClick={() => infoTriger(item)}>
+                                                    <InfoIcon />
+                                                </IconButton>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        style={{ alignContent: 'center' }}
+                        rowsPerPageOptions={[10, 25, 100]}
+                        component="div"
+                        count={data.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </Paper>
+
+                <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
                     className={classes.modal}
@@ -166,33 +210,34 @@ export default function Histori() {
                     BackdropComponent={Backdrop}
                 >
                     <Fade in={modalInfo}>
-                        <div className={classes.paperHistori}>
-                            {/* body card start */}
+                        <div className={classes.paperHistori} ref={ref}>
                             <Grid container justify="center" alignItems="center">
-                                <Typography variant="h5">DETAIL PEMBAYARAN SPP</Typography>
-                                <Grid container className={classes.formContainer} justify="center
-">
-                                    {/* info start */}
+                                <Typography variant="p" className={classes.titleModal}>Detail pembayaran</Typography>
+                                <Grid container className={classes.formContainer} justify="center">
                                     {formModalInfo.map(item => (
-                                        <Grid container justify="flex-end" alignItems="center">
+                                        <Grid container justify="center">
                                             <Grid item xs={3}>
-                                                <Typography variant="h8">{item.label} </Typography>
+                                                <Typography variant="p" className={classes.labelModal}>{item.label} </Typography>
                                             </Grid>
                                             <Grid container justify="center" xs={3}>:</Grid>
                                             <Grid item xs={6}>
-                                                <Typography variant="h8">{item.theValue}</Typography>
+                                                <Typography variant="p" className={classes.valueModal}>{item.theValue}</Typography>
                                             </Grid>
                                         </Grid>
                                     ))}
-                                    {/* info end */}
+                                    <br />
                                 </Grid>
+                                <Pdf targetRef={ref} filename="struk-pembayaran.pdf">
+                                    {({ toPdf }) =>
+                                        <Button color="primary" variant="outlined" onClick={toPdf} startIcon={<DownloadIcon />}>
+                                            Download
+                                        </Button>
+                                    }
+                                </Pdf>
                             </Grid>
-                            {/* body card end */}
                         </div>
                     </Fade>
-                </Modal >
-                {/* modal add end */}
-                {/* snackbar */}
+                </Modal>
             </>
         )
     } else {
@@ -202,4 +247,6 @@ export default function Histori() {
         localStorage.removeItem("role")
         window.location = "/"
     }
+
+
 }
